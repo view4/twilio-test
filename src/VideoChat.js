@@ -18,7 +18,8 @@ const VideoChat = () => {
   const handleSubmit = useCallback(
     async event => {
       event.preventDefault();
-      const data = await fetch('/video/token', {
+      console.log(username, roomName)
+      const data = await fetch('http://localhost:3001/video/token', {
         method: 'POST',
         body: JSON.stringify({
           identity: username,
@@ -32,7 +33,6 @@ const VideoChat = () => {
     },
     [roomName, username]
   );
-
   const handleLogout = useCallback(event => {
     setToken(null);
   }, []);

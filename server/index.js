@@ -18,6 +18,11 @@ const sendTokenResponse = (token, res) => {
   );
 };
 
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  next();   
+});
+
 app.get('/api/greeting', (req, res) => {
   const name = req.query.name || 'World';
   res.setHeader('Content-Type', 'application/json');
@@ -32,6 +37,7 @@ app.get('/video/token', (req, res) => {
 
 });
 app.post('/video/token', (req, res) => {
+ 
   const identity = req.body.identity;
   const room = req.body.room;
   const token = videoToken(identity, room, config);
